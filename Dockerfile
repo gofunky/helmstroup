@@ -5,7 +5,7 @@ FROM atlassian/default-image:2
 ARG AZURE_CLI_VERSION="0.10.13"
 ARG HELM_VERSION="v2.8.1"
 
-RUN curl -L http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz | tar zxv -C /tmp \
+RUN curl -L https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz | tar zxv -C /tmp \
     && mv /tmp/linux-amd64/helm /usr/local/bin/helm \
     && chmod +x /usr/local/bin/helm \
     && mkdir -p ~/.helm/plugins \
