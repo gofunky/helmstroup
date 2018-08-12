@@ -2,7 +2,7 @@ FROM gofunky/helmsman:latest as helm
 
 FROM microsoft/azure-cli:2.0.43
 
-ARG HELM_VERSION="v2.8.1"
+ARG HELM_VERSION="v2.10.0-rc.3"
 
 COPY --from=helm /bin/kubectl /bin/kubectl
 
