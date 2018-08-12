@@ -1,9 +1,10 @@
 FROM gofunky/helmsman:latest as helm
 
-FROM atlassian/default-image:2
+FROM microsoft/azure-cli:2.0.43
 
-ARG AZURE_CLI_VERSION="0.10.13"
 ARG HELM_VERSION="v2.8.1"
+
+COPY --from=helm /bin/kubectl /bin/kubectl
 
 RUN curl -L https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz | tar zxv -C /tmp \
     && mv /tmp/linux-amd64/helm /usr/local/bin/helm \
@@ -13,11 +14,4 @@ RUN curl -L https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-
     && helm plugin install https://github.com/nouney/helm-gcs \
     && rm -rf /tmp/linux-amd64
 
-RUN npm install --global azure-cli@${AZURE_CLI_VERSION} && \
-      azure --completion >> ~/azure.completion.sh && \
-      echo 'source ~/azure.completion.sh' >> ~/.bashrc
-
-COPY --from=helm /bin/kubectl /bin/kubectl
 COPY --from=helm /bin/helmsman /bin/helmsman
-
-RUN azure config mode arm
