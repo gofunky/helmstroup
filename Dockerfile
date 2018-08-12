@@ -1,4 +1,4 @@
-FROM praqma/helmsman:latest as helm
+FROM gofunky/helmsman:latest as helm
 
 FROM atlassian/default-image:2
 
