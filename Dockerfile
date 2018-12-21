@@ -1,6 +1,6 @@
 FROM gofunky/helmsman:latest as helm
 
-FROM microsoft/azure-cli:2.0.46
+FROM microsoft/azure-cli:2.0.54
 
 COPY --from=helm /usr/local/bin/kubectl /usr/local/bin/kubectl
 COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm
